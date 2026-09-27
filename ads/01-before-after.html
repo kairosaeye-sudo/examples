@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Example 01 — Before / After</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .phone-frame {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+    }
+    /* Status bar */
+    .status-bar {
+      height: 48px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1c1e21;
+      border-bottom: 1px solid #e4e6eb;
+    }
+    /* Feed header */
+    .feed-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e4e6eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; background: #1877f2; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 13px; }
+    .feed-header-info { flex: 1; }
+    .feed-header-info .name { font-weight: 600; font-size: 13px; color: #1c1e21; }
+    .feed-header-info .time { font-size: 11px; color: #65676b; }
+    /* Ad label */
+    .ad-label {
+      display: inline-block;
+      background: linear-gradient(135deg, #3a86ff 0%, #8338ec 100%);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    /* Ad body */
+    .ad-body { padding: 0; }
+    .ad-image {
+      width: 100%;
+      height: 220px;
+      background: #1a1a2e;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ad-image-before, .ad-image-after {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      padding: 20px;
+    }
+    .ad-image-before {
+      left: 0;
+      background: #3a3a5c;
+      border-right: 3px solid #ff4757;
+    }
+    .ad-image-after {
+      right: 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d1b69 100%);
+    }
+    .ad-image-before .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ff4757;
+      margin-bottom: 8px;
+    }
+    .ad-image-after .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #48dbfb;
+      margin-bottom: 8px;
+    }
+    .ad-image-before .icon { font-size: 32px; margin-bottom: 8px; }
+    .ad-image-after .icon { font-size: 32px; margin-bottom: 8px; }
+    .ad-image-tag {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .ad-copy { padding: 14px 16px; }
+    .ad-sponsor {
+      font-size: 11px;
+      font-weight: 600;
+      color: #65676b;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ad-sponsor .dot { width: 6px; height: 6px; background: #1877f2; border-radius: 50%; }
+    .ad-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #1c1e21;
+      margin-bottom: 10px;
+    }
+    .ad-text strong { font-weight: 700; }
+    .ad-actions { border-top: 1px solid #e4e6eb; padding: 10px 16px; }
+    .ad-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #3a86ff 0%, #8338ec 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .ad-btn:hover { transform: translateY(-1px); }
+    .ad-footer {
+      padding: 8px 16px 14px;
+      font-size: 11px;
+      color: #65676b;
+      border-top: 1px solid #e4e6eb;
+      background: #fff;
+    }
+    .ad-footer a { color: #65676b; text-decoration: none; }
+    .ad-footer a:hover { color: #3a86ff; }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="status-bar">
+      <span>9:41</span>
+      <span>📶 🔋 100%</span>
+    </div>
+    <div class="feed-header">
+      <div class="avatar">K</div>
+      <div class="feed-header-info">
+        <div class="name">kairos.ccc</div>
+        <div class="time">Sponsored · 2h ago</div>
+      </div>
+    </div>
+    <div class="ad-body">
+      <div class="ad-image">
+        <div class="ad-image-before">
+          <div class="icon">📄</div>
+          <div class="label">Before</div>
+          <div style="font-size:11px;color:#aaa;margin-top:4px;">Old, outdated site</div>
+        </div>
+        <div class="ad-image-after">
+          <div class="icon">✨</div>
+          <div class="label">After</div>
+          <div style="font-size:11px;color:#ccc;margin-top:4px;">Modern, sleek redesign</div>
+        </div>
+        <div class="ad-image-tag">The Kairos Glow Up</div>
+      </div>
+      <div class="ad-copy">
+        <div class="ad-sponsor"><span class="dot"></span> Sponsored by Kairos</div>
+        <div class="ad-text">
+          <strong>We give small business sites the glow up they need.</strong><br>
+          Modern design. Faster load. Clearer message. That means more visitors become customers — usually within a week of launch.
+        </div>
+        <div style="font-size:12px;color:#65676b;margin-bottom:8px;font-style:italic;">
+          "Our site went from ignored to booking calls in a week." — Luminara Tech
+        </div>
+        <div class="ad-text" style="font-size:13px;color:#65676b;">
+          50+ businesses helped. Design + build from one team. Free consult call.
+        </div>
+      </div>
+      <div class="ad-actions">
+        <a href="https://calendly.com/your-calendly-link" class="ad-btn" target="_blank">
+          Book a Free Call
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:6px;">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="ad-footer">
+      <a href="#">See all reviews</a> · <a href="#">Privacy</a> · <a href="#">Terms</a>
+    </div>
+  </div>
+</body>
+</html>

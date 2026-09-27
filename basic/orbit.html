@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbit App - Coming Soon</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #0a0a0a; color: #fff; }
+    .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 20px; }
+    .hero h1 { font-size: 42px; margin-bottom: 15px; }
+    .hero p { font-size: 18px; color: #aaa; max-width: 450px; margin-bottom: 30px; }
+    .email-form { display: flex; gap: 10px; width: 100%; max-width: 400px; }
+    .email-form input { flex: 1; padding: 14px 16px; border: none; border-radius: 4px; font-size: 16px; }
+    .email-form button { background: #0066cc; color: #fff; padding: 14px 24px; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+    .info { text-align: center; margin-top: 40px; color: #666; font-size: 14px; }
+    footer { background: #111; color: #555; text-align: center; padding: 20px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>Orbit App</h1>
+    <p>The project management tool built for remote teams. Launching soon — join the waitlist for early access and a founding member discount.</p>
+    <form class="email-form" onsubmit="event.preventDefault(); alert('Thanks for joining the waitlist!');">
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit">Join Waitlist</button>
+    </form>
+    <div class="info">Be the first to know when we launch. No spam, ever.</div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Orbit App. All rights reserved.</p>
+  </footer>
+</body>
+</html>

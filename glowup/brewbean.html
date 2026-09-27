@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brew & Bean - Artisan Coffee</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --espresso: #3c2415;
+      --latte: #c4a882;
+      --cream: #faf6f1;
+      --warm: #d4a574;
+      --gold: #b8860b;
+    }
+    body { font-family: 'Georgia', 'Times New Roman', serif; line-height: 1.7; color: #3c2415; background: var(--cream); }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header { background: var(--espresso); color: #faf6f1; position: relative; padding: 0; }
+    .hero-header { padding: 80px 0 60px; text-align: center; position: relative; }
+    .hero-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--warm), var(--gold)); }
+    .logo { font-size: 42px; font-weight: 700; letter-spacing: 2px; margin-bottom: 8px; }
+    .tagline { font-size: 16px; color: var(--latte); font-style: italic; }
+    nav { display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
+    nav a { color: #faf6f1; text-decoration: none; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; transition: opacity 0.2s; }
+    nav a:hover { opacity: 1; color: var(--gold); }
+
+    /* Hero */
+    .intro { padding: 60px 0; text-align: center; }
+    .intro h2 { font-size: 36px; font-weight: 700; margin-bottom: 18px; color: var(--espresso); }
+    .intro p { font-size: 17px; color: #6b4423; max-width: 550px; margin: 0 auto 30px; font-style: italic; }
+    .btn-cream { background: var(--espresso); color: #faf6f1; padding: 13px 28px; text-decoration: none; border-radius: 30px; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; transition: all 0.3s; display: inline-block; }
+    .btn-cream:hover { background: var(--gold); color: #fff; }
+
+    /* Menu */
+    .menu-section { padding: 60px 0; }
+    .section-head { text-align: center; margin-bottom: 40px; }
+    .section-head h2 { font-size: 30px; font-weight: 700; color: var(--espresso); margin-bottom: 8px; }
+    .section-head p { color: #8b6914; font-style: italic; }
+    .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .menu-card { background: #fff; border-radius: 8px; padding: 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); transition: all 0.3s; position: relative; overflow: hidden; }
+    .menu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--warm)); }
+    .menu-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+    .menu-category { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+    .menu-item { font-size: 17px; font-weight: 600; margin-bottom: 4px; color: var(--espresso); }
+    .menu-desc { font-size: 13px; color: #8b6914; margin-bottom: 8px; font-style: italic; }
+    .menu-price { font-size: 15px; font-weight: 700; color: var(--espresso); }
+
+    /* About */
+    .about-section { background: var(--espresso); color: #faf6f1; padding: 60px 0; text-align: center; }
+    .about-section h2 { font-size: 28px; margin-bottom: 15px; color: var(--gold); }
+    .about-section p { font-size: 16px; max-width: 600px; margin: 0 auto; line-height: 1.8; opacity: 0.9; }
+
+    /* Hours */
+    .hours-section { padding: 50px 0; }
+    .hours-card { background: #fff; border-radius: 12px; padding: 35px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.06); text-align: center; }
+    .hours-card h3 { font-size: 22px; color: var(--espresso); margin-bottom: 20px; }
+    .info-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 15px; }
+    .info-icon { width: 36px; height: 36px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--espresso); flex-shrink: 0; }
+    .info-text { font-weight: 500; }
+    .info-detail { font-size: 13px; color: #8b6914; }
+
+    /* Instagram */
+    .gallery-section { padding: 40px 0 60px; }
+    .gallery-section h2 { text-align: center; font-size: 22px; margin-bottom: 25px; color: var(--espresso); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .gallery-item { aspect-ratio: 1; background: var(--cream); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--latte); transition: all 0.3s; }
+    .gallery-item:hover { background: var(--espresso); color: var(--gold); transform: scale(1.03); }
+
+    footer { background: var(--espresso); color: var(--latte); text-align: center; padding: 25px 0; font-size: 13px; }
+    .footer-brand { font-size: 18px; font-weight: 700; letter-spacing: 2px; color: #faf6f1; margin-bottom: 5px; }
+
+    @media (max-width: 600px) {
+      .logo { font-size: 32px; }
+      .menu-grid, .gallery-grid { grid-template-columns: 1fr; }
+      .hero-header { padding: 50px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container hero-header">
+      <div class="logo">BREW & BEAN</div>
+      <p class="tagline">Artisan Coffee &mdash; Made by Hand, Served with Heart</p>
+      <nav>
+        <a href="#menu">Menu</a>
+        <a href="#about">Our Story</a>
+        <a href="#visit">Visit Us</a>
+        <a href="#gallery">Gallery</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="intro">
+    <div class="container">
+      <h2>Your Neighborhood Coffee Destination</h2>
+      <p>From bean to cup, we craft every drink with intention. Small-batch roasts, house-made syrups, and pastries baked fresh each morning.</p>
+      <a href="#menu" class="btn-cream">Explore the Menu</a>
+    </div>
+  </section>
+
+  <section id="menu" class="menu-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Menu</h2>
+        <p>Crafted drinks. Fresh bites. Always seasonal.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-category">Espresso</div>
+          <div class="menu-item">Classic Espresso</div>
+          <div class="menu-desc">Single-origin, 1 shot or 2</div>
+          <div class="menu-price">$3.00 &ndash; $4.00</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-category">Milk Drinks</div>
+          <div class="menu-item">Cappuccino &middot; Latte &middot; Flat White</div>
+          <div class="menu-desc">Oat, almond, and dairy options</div>
+          <div class="menu-price">$4.50 &ndash; $5.50</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-category">Cold Brew</div>
+          <div class="menu-item">Nitro Cold Brew &middot; Cold Foam Latte</div>
+          <div class="menu-desc">Steeped 18 hours for smooth depth</div>
+          <div class="menu-price">$4.25 &ndash; $5.75</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-category">Seasonal</div>
+          <div class="menu-item">Honey Lavender Latte</div>
+          <div class="menu-desc">House-made honey syrup, dried lavender</div>
+          <div class="menu-price">$5.50</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-category">Pastries</div>
+          <div class="menu-item">Butter Croissant &middot; Blueberry Scone</div>
+          <div class="menu-desc">Baked fresh every morning at 6am</div>
+          <div class="menu-price">$3.50 &ndash; $4.25</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-category">Food</div>
+          <div class="menu-item">Avocado Toast &middot; Breakfast Sandwich</div>
+          <div class="menu-desc">Locally sourced ingredients, served hot</div>
+          <div class="menu-price">$8.00 &ndash; $10.50</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2>Our Story</h2>
+      <p>Brew &amp; Bean opened its doors in 2019 with a simple belief: great coffee should be a daily ritual, not a luxury. We source our beans directly from small farms in Colombia, Ethiopia, and Guatemala &mdash; roasting every batch in-house to bring out the flavors our neighbors love.</p>
+      <p style="margin-top: 15px;">Every drink is made by hand. Every pastry is baked from scratch. And every cup comes with a smile.</p>
+    </div>
+  </section>
+
+  <section id="visit" class="hours-section">
+    <div class="container">
+      <div class="hours-card">
+        <h3>Visit Us</h3>
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-text">123 Main Street</div>
+            <div class="info-detail">Downtown &middot; Corner of 2nd &amp; Main</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🕐</div>
+          <div>
+            <div class="info-text">Open Daily, 7am &ndash; 7pm</div>
+            <div class="info-detail">Late night Friday &amp; Saturday until 9pm</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-text">(555) 123-4567</div>
+            <div class="info-detail">hello@brewandbean.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <h2>Follow Our Brews</h2>
+      <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=100&h=100&fit=crop&q=80" alt="Coffee" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=100&h=100&fit=crop&q=80" alt="Muffin" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1515553074495-0d4570024538?w=100&h=100&fit=crop&q=80" alt="Plant" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=100&h=100&fit=crop&q=80" alt="Notebook" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1571934811356-5cc0aa4658bd?w=100&h=100&fit=crop&q=80" alt="Coffee beans" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1559925393-8be0ec46e4b2?w=100&h=100&fit=crop&q=80" alt="Croissant" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+          </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=100&h=100&fit=crop&q=80" alt="Ice" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a3b?w=100&h=100&fit=crop&q=80" alt="Hearts" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">BREW & BEAN</div>
+      <p>&copy; 2026 Brew &amp; Bean. Crafted with care.</p>
+    </div>
+  </footer>
+</body>
+</html>

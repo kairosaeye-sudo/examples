@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kairos Ad — A/B Test Variant Bank</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0b;
+      color: #e4e4e7;
+      padding: 24px;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+      background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      color: #a1a1aa;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .variant-bank {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .ad-group {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .ad-group-header {
+      padding: 12px 16px;
+      background: #1f1f23;
+      border-bottom: 1px solid #27272a;
+      font-size: 12px;
+      font-weight: 600;
+      color: #a78bfa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ad-group-body { padding: 16px; }
+    .variant {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .variant:last-child { margin-bottom: 0; }
+    .variant-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+    .tag-problem { background: #dc2626; color: #fff; }
+    .tag-offer { background: #2563eb; color: #fff; }
+    .tag-proof { background: #059669; color: #fff; }
+    .variant-headline {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .variant-body {
+      font-size: 13px;
+      color: #a1a1aa;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .variant-note {
+      font-size: 11px;
+      color: #71717a;
+      font-style: italic;
+      border-top: 1px solid #27272a;
+      padding-top: 6px;
+    }
+    .winner-badge {
+      display: inline-block;
+      background: #22c55e;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .rec-box {
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 16px;
+    }
+    .rec-box h3 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #22c55e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .rec-box p { font-size: 13px; color: #a1a1aa; line-height: 1.5; }
+    .test-rules {
+      background: #1f1f23;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 16px;
+    }
+    .test-rules h3 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #a78bfa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .test-rules ul { list-style: none; padding: 0; }
+    .test-rules li {
+      font-size: 12px;
+      color: #a1a1aa;
+      padding: 4px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+    .test-rules li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #a78bfa;
+    }
+  </style>
+</head>
+<body>
+  <div class="variant-bank">
+    <h1>Kairos — Ad A/B Test Variant Bank</h1>
+    <div class="subtitle">3 hooks per ad · Different angles, same body · Pick one to test first, rotate in winners</div>
+
+    <!-- AD 01: Before / After -->
+    <div class="ad-group">
+      <div class="ad-group-header">
+        <span>01 · Before / After Split</span>
+        <span class="winner-badge">Current: Offer-led</span>
+      </div>
+      <div class="ad-group-body">
+
+        <div class="variant">
+          <div class="variant-tag tag-offer">Variant A · Offer-led ← CURRENT</div>
+          <div class="variant-headline">We give small business sites the glow up they need.</div>
+          <div class="variant-body">Modern design. Faster load. Clearer message. That means more visitors become customers — usually within a week of launch.</div>
+          <div class="variant-note">Why: Front-loads the offer in the first 8 words. "Glow up" is a proven hook (Zigzag Creative uses it live on Meta).</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-problem">Variant B · Problem-led</div>
+          <div class="variant-headline">Your website is losing customers every day.</div>
+          <div class="variant-body">Most small business sites look dated and don't convert — without anyone noticing. We redesign and rebuild them. Modern design. Faster load. Clearer message. See what changed for 50+ businesses.</div>
+          <div class="variant-note">Why: Problem-first hooks pre-handle the top objection. Web Tonic Pattern 4. High emotional stakes = scroll-stop.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-proof">Variant C · Social proof-led</div>
+          <div class="variant-headline">50+ small businesses switched. See what happened.</div>
+          <div class="variant-body">Each one got a full redesign and rebuild — modern design, faster load, clearer message. The result? More visitors becoming customers. "Our site went from ignored to booking calls in a week." — Luminara Tech</div>
+          <div class="variant-note">Why: Third-party voice beats brand voice (Web Tonic #19). "50+" is a concrete number — one number beats a list.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AD 02: Hero Shot -->
+    <div class="ad-group">
+      <div class="ad-group-header">
+        <span>02 · Hero Shot with Mockup</span>
+        <span class="winner-badge">Current: Outcome-led</span>
+      </div>
+      <div class="ad-group-body">
+
+        <div class="variant">
+          <div class="variant-tag tag-offer">Variant A · Outcome-led ← CURRENT</div>
+          <div class="variant-headline">A site that actually books calls.</div>
+          <div class="variant-body">50+ small businesses helped. Design + build from one team. Stop losing customers to a bad site — most look dated and don't convert. We redesign and rebuild them.</div>
+          <div class="variant-note">Why: The outcome (booked calls) is what the buyer actually wants. Matches landing page headline. Web Tonic Pattern 5.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-problem">Variant B · Problem-led</div>
+          <div class="variant-headline">Your website is costing you customers.</div>
+          <div class="variant-body">Every day your site looks dated, another visitor leaves and never comes back. We redesign and rebuild small business sites — modern design, faster load, clearer message. 50+ businesses helped. Free consult call.</div>
+          <div class="variant-note">Why: Stakes are concrete and personal. "Costing you" is more urgent than "holding you back."</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-proof">Variant C · Specificity-led</div>
+          <div class="variant-headline">The 3 things your site is doing wrong.</div>
+          <div class="variant-body">Most small business sites lose customers on 3 things: slow load, unclear message, outdated design. We fix all three — and give you a 3-page redesign mockup to prove it. 50+ businesses helped. Free audit.</div>
+          <div class="variant-note">Why: "3 things" triggers curiosity + promises a checklist. One number beats five claims (Web Tonic Pattern 2).</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AD 03: Case Study Carousel -->
+    <div class="ad-group">
+      <div class="ad-group-header">
+        <span>03 · Case Study Carousel (3 slides)</span>
+        <span class="winner-badge">Current: Outcome-led</span>
+      </div>
+      <div class="ad-group-body">
+
+        <div class="variant">
+          <div class="variant-tag tag-offer">Variant A · Outcome-led ← CURRENT</div>
+          <div class="variant-headline">See what a real glow up looks like.</div>
+          <div class="variant-body">Three recent projects — each one built from scratch by the Kairos team. Same process, different industries. Before/after metrics on every card.</div>
+          <div class="variant-note">Why: "See what it looks like" is a low-friction promise. The before/after numbers on each slide do the selling.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-problem">Variant B · Problem-led</div>
+          <div class="variant-headline">Your industry's worst website problems — solved.</div>
+          <div class="variant-body">SaaS tools that don't convert. Coffee shops with no online orders. DTC brands with low average order value. Three projects. Three industries. All fixed by the same process. Swipe to see the before and after.</div>
+          <div class="variant-note">Why: Calls out the viewer's specific industry pain. "Your industry's worst" is a strong hook — names the fear directly.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-proof">Variant C · Social proof-led</div>
+          <div class="variant-headline">3 businesses. 3 industries. All got the glow up.</div>
+          <div class="variant-body">TaskFlow went from 2% to 8% conversion. Brew &amp; Bean went from 12 to 47 online orders a week. Nook Notebook went from $48 to $89 average order value. Same Kairos process — different results.</div>
+          <div class="variant-note">Why: Pure results-led. The numbers do all the talking. This is the variant most likely to beat on cold traffic.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AD 04: Offer / Lead Gen -->
+    <div class="ad-group">
+      <div class="ad-group-header">
+        <span>04 · Free Audit Lead Gen</span>
+        <span class="winner-badge">Current: Problem-led</span>
+      </div>
+      <div class="ad-group-body">
+
+        <div class="variant">
+          <div class="variant-tag tag-problem">Variant A · Problem-led ← CURRENT</div>
+          <div class="variant-headline">Your website is losing customers. Here's the proof.</div>
+          <div class="variant-body">Most small business sites lose customers without anyone noticing. We'll show you exactly what's wrong — and give you a 3-page redesign mockup so you can see it fixed. No pressure, no pitch. 50+ businesses helped.</div>
+          <div class="variant-note">Why: Problem-first, not question-first (Web Tonic Pattern 4). "Here's the proof" creates curiosity to click.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-offer">Variant B · Offer-led</div>
+          <div class="variant-headline">Free website audit — 3 pages, 40 minutes, no pitch.</div>
+          <div class="variant-body">We'll review your site, give you a performance report, a 3-page redesign mockup, and an action plan. All free. 50+ businesses have taken us up on it. Book your spot — no pressure, no pitch.</div>
+          <div class="variant-note">Why: "3 pages, 40 minutes, no pitch" — three concrete numbers, front-loaded. Named deliverable. Web Tonic Pattern 1 + Pattern 2.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-proof">Variant C · Social proof-led</div>
+          <div class="variant-headline">50+ businesses got their free audit. Here's what they found.</div>
+          <div class="variant-body">Every one of them had at least one thing losing customers without anyone noticing. Design review. Performance report. 3-page redesign mockup. Action plan. All free. See what we'd find on your site.</div>
+          <div class="variant-note">Why: Social proof leads — "50+ got it, here's what they found." Creates FOMO on the insight, not just the service.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AD 05: Poster -->
+    <div class="ad-group">
+      <div class="ad-group-header">
+        <span>05 · Poster / Brand Image Ad</span>
+        <span class="winner-badge">Current: Problem-led</span>
+      </div>
+      <div class="ad-group-body">
+
+        <div class="variant">
+          <div class="variant-tag tag-problem">Variant A · Problem-led ← CURRENT</div>
+          <div class="variant-headline">Your website is losing customers. Give it the glow up it needs.</div>
+          <div class="variant-body">We redesign and rebuild websites for startups and small businesses. Modern design. Faster load. Clear message. 50+ businesses helped — everything built by one team from start to finish.</div>
+          <div class="variant-note">Why: Problem + solution in one line. The "glow up" phrasing softens the problem while keeping it real.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-offer">Variant B · Offer-led</div>
+          <div class="variant-headline">Give your website the glow up it needs. Free consult call.</div>
+          <div class="variant-body">We redesign and rebuild websites for startups and small businesses — one team, modern design, faster load, clear message. 50+ businesses helped. Book a free call and see what we'd do with your site.</div>
+          <div class="variant-note">Why: The offer (free call) is front and center. Lower friction than "start your project" — "free call" is a no-brainer CTA.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-proof">Variant C · Social proof-led</div>
+          <div class="variant-headline">50+ businesses. One team. Every site got the glow up.</div>
+          <div class="variant-body">We redesign and rebuild websites for startups and small businesses. Modern design. Faster load. Clear message. Everything built by one team from start to finish. See what we did for them — then book a call for your site.</div>
+          <div class="variant-note">Why: "50+ businesses" leads, then the "one team" differentiator, then CTA. Credibility first, then ask.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AD 06: Video Ad -->
+    <div class="ad-group">
+      <div class="ad-group-header">
+        <span>06 · Video Ad (30 sec)</span>
+        <span class="winner-badge">Current: Outcome-led</span>
+      </div>
+      <div class="ad-group-body">
+
+        <div class="variant">
+          <div class="variant-tag tag-offer">Variant A · Outcome-led ← CURRENT</div>
+          <div class="variant-headline">See the glow up in action.</div>
+          <div class="variant-body">One team. Two weeks of design. Four weeks of build. A startup tool that went from outdated to team favorite — and 40% more daily active users in the first month.</div>
+          <div class="variant-note">Why: "See it in action" promises a demonstration (Web Tonic #1/#5). The 40% result is concrete and specific.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-problem">Variant B · Problem-led</div>
+          <div class="variant-headline">This is what a bad website looks like — and how we fixed it.</div>
+          <div class="variant-body">TaskFlow's old site was slow, confusing, and losing users every week. We rebuilt it from scratch in 6 weeks. Result: 40% more daily active users. Watch the before and after.</div>
+          <div class="variant-note">Why: "This is what a bad website looks like" is a strong hook — viewers self-identify instantly. Then the fix.</div>
+        </div>
+
+        <div class="variant">
+          <div class="variant-tag tag-proof">Variant C · Social proof-led</div>
+          <div class="variant-headline">Watch what happened when we rebuilt TaskFlow.</div>
+          <div class="variant-body">One team. Two weeks of design. Four weeks of build. The old site was losing users daily. The new one brought in 40% more daily active users in the first month. See the full rebuild — before and after.</div>
+          <div class="variant-note">Why: "Watch what happened" frames it as a story/result, not a sales pitch. The 40% number seals it.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rec-box">
+      <h3>Recommended test sequence</h3>
+      <p><strong>Round 1:</strong> Run the current (offer-led) variant against the problem-led variant on each ad. Problem-led usually wins on cold traffic — higher emotional stakes = scroll-stop.</p>
+      <p><strong>Round 2:</strong> Once you have a winner, test the social proof variant against it. Social proof wins on warm retargeting — people who already know you want validation, not a pitch.</p>
+      <p><strong>Rotate:</strong> Swap in a fresh variant every 2–3 weeks to fight creative fatigue. The research says most winning ads saturate around 4–6 weeks.</p>
+    </div>
+
+    <div class="test-rules">
+      <h3>A/B test rules (from the research)</h3>
+      <ul>
+        <li>Give each variant at least 5 days and $10–15/day before drawing conclusions — early optimization on thin data is the #1 cause of wasted test budget</li>
+        <li>Define your success metric before you launch (CPA? CTR? Video view-through?) and don't switch mid-test</li>
+        <li>Scale the winner before testing the next concept — a proven ad at $50/day is more valuable than finding the next winner untested</li>
+        <li>Change one element per round — same body, three openings. Hook variance beats production value</li>
+        <li>Keep a swipe file organized by objective, not industry — a great lead ad for a dentist often works for a law firm</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

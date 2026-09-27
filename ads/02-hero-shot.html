@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Example 02 — Hero Shot</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .phone-frame {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+    }
+    .status-bar {
+      height: 48px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1c1e21;
+      border-bottom: 1px solid #e4e6eb;
+    }
+    .feed-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e4e6eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; background: #8338ec; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 13px; }
+    .feed-header-info { flex: 1; }
+    .feed-header-info .name { font-weight: 600; font-size: 13px; color: #1c1e21; }
+    .feed-header-info .time { font-size: 11px; color: #65676b; }
+    .ad-label {
+      display: inline-block;
+      background: #8338ec;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .ad-body { padding: 0; }
+    .ad-image {
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(135deg, #0a0a0b 0%, #1a1a2e 50%, #2d1b69 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .ad-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(131,56,236,0.15) 0%, transparent 70%);
+    }
+    .ad-image-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+    .ad-image-content .logo-mark {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 32px rgba(167,139,250,0.3);
+    }
+    .ad-image-content .logo-mark svg { width: 32px; height: 32px; stroke: #0a0a0b; stroke-width: 2; fill: none; }
+    .ad-image-content .preview-frame {
+      background: #18181b;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 0 auto 16px;
+      width: 100%;
+      max-width: 250px;
+    }
+    .preview-bar { height: 8px; background: #a78bfa; border-radius: 4px; margin-bottom: 8px; width: 70%; }
+    .preview-bar.short { width: 40%; }
+    .preview-dot { width: 6px; height: 6px; background: #60a5fa; border-radius: 50%; display: inline-block; margin-right: 4px; }
+    .preview-line { height: 4px; background: #3f3f46; border-radius: 2px; margin-bottom: 6px; width: 90%; }
+    .preview-line:nth-child(3) { width: 60%; }
+    .preview-label { font-size: 9px; color: #a1a1aa; text-align: center; margin-top: 8px; letter-spacing: 1px; text-transform: uppercase; }
+    .ad-image-content h2 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .ad-image-content p {
+      font-size: 13px;
+      color: #a1a1aa;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+    .ad-image-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      color: #48dbfb;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border: 1px solid rgba(72,219,251,0.3);
+    }
+    .ad-copy { padding: 14px 16px; }
+    .ad-sponsor {
+      font-size: 11px;
+      font-weight: 600;
+      color: #65676b;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ad-sponsor .dot { width: 6px; height: 6px; background: #8338ec; border-radius: 50%; }
+    .ad-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #1c1e21;
+      margin-bottom: 10px;
+    }
+    .ad-text strong { font-weight: 700; }
+    .ad-cta-line {
+      font-size: 13px;
+      font-weight: 600;
+      color: #8338ec;
+      margin-bottom: 10px;
+    }
+    .ad-actions { border-top: 1px solid #e4e6eb; padding: 10px 16px; }
+    .ad-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: #1c1e21;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .ad-btn:hover { transform: translateY(-1px); }
+    .ad-footer {
+      padding: 8px 16px 14px;
+      font-size: 11px;
+      color: #65676b;
+      border-top: 1px solid #e4e6eb;
+      background: #fff;
+    }
+    .ad-footer a { color: #65676b; text-decoration: none; }
+    .ad-footer a:hover { color: #8338ec; }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="status-bar">
+      <span>9:41</span>
+      <span>📶 🔋 100%</span>
+    </div>
+    <div class="feed-header">
+      <div class="avatar">K</div>
+      <div class="feed-header-info">
+        <div class="name">kairos.ccc</div>
+        <div class="time">Sponsored · 5h ago</div>
+      </div>
+    </div>
+    <div class="ad-body">
+      <div class="ad-image">
+        <div class="ad-image-overlay"></div>
+        <div class="ad-image-badge">New Site</div>
+        <div class="ad-image-content">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24"><path d="M12 3L3 8l9 5 9-5-9-5z"/><path d="M3 15l9 5 9-5"/><path d="M3 12l9 5 9-5"/></svg>
+          </div>
+          <div class="preview-frame">
+            <div class="preview-bar"></div>
+            <div class="preview-bar short"></div>
+            <div class="preview-line"></div>
+            <div class="preview-line"></div>
+            <div class="preview-label">KAI ROS</div>
+          </div>
+          <h2>A site that<br>actually books calls.</h2>
+          <p>50+ small businesses helped. Design + build from one team.</p>
+        </div>
+      </div>
+      <div class="ad-copy">
+        <div class="ad-sponsor"><span class="dot"></span> Sponsored by Kairos</div>
+        <div class="ad-text">
+          <strong>Stop losing customers to a bad site.</strong><br>
+          Most small business sites look dated and don't convert. We redesign and rebuild them — modern design, faster load, clearer message. That means more visitors become customers.
+        </div>
+        <div class="ad-cta-line">Get a free site audit →</div>
+        <div class="ad-actions" style="border:none;padding:0;">
+          <a href="https://calendly.com/your-calendly-link" class="ad-btn" target="_blank">
+            Book a Free Call
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:6px;">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="ad-footer">
+      <a href="#">See all reviews</a> · <a href="#">Privacy</a> · <a href="#">Terms</a>
+    </div>
+  </div>
+</body>
+</html>

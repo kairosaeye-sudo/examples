@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nook Notebook - Premium Journals</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --ink: #292524;
+      --paper: #fafaf9;
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --warm: #fef7ed;
+      --border: #e7e5e4;
+    }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header { background: var(--ink); color: #fff; position: sticky; top: 0; z-index: 100; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; max-width: 1000px; margin: 0 auto; }
+    .logo { font-size: 20px; font-weight: 800; letter-spacing: 2px; display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 30px; height: 30px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; }
+    nav a { color: #a8a29e; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+    nav a:hover { color: #fff; }
+    .header-cta { background: transparent; border: 1px solid #a8a29e; color: #fff !important; padding: 7px 16px; border-radius: 6px; font-weight: 600 !important; font-size: 13px !important; transition: all 0.2s !important; }
+    .header-cta:hover { background: var(--accent); border-color: var(--accent); color: #fff !important; }
+
+    /* Hero */
+    .hero { background: var(--warm); padding: 70px 0 80px; text-align: center; position: relative; overflow: hidden; }
+    .hero-bg-dots { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(var(--ink) 1px, transparent 1px); background-size: 24px 24px; opacity: 0.04; }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge { display: inline-block; background: rgba(217,119,6,0.12); color: var(--accent); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 20px; }
+    .hero h1 { font-size: 44px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; color: var(--ink); line-height: 1.1; }
+    .hero p { font-size: 17px; color: #57534e; max-width: 480px; margin: 0 auto 35px; }
+    .hero-cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--ink); color: #fff; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.2s; }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-outline { border: 1.5px solid var(--ink); color: var(--ink); padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.2s; }
+    .btn-outline:hover { background: var(--ink); color: #fff; }
+
+    /* Product Showcase */
+    .product-section { padding: 70px 0; }
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .product-visual { background: var(--paper); border: 1px solid var(--border); border-radius: 16px; padding: 40px; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+    .product-visual::before { content: ''; position: absolute; inset: 16px; border: 2px dashed var(--border); border-radius: 12px; }
+    .product-image { font-size: 80px; margin-bottom: 16px; }
+    .product-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700; }
+    .product-info h2 { font-size: 34px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; color: var(--ink); }
+    .product-info .lead { font-size: 16px; color: #57534e; margin-bottom: 20px; }
+    .product-details { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+    .detail-row { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #57534e; }
+    .detail-check { color: var(--accent); font-weight: 700; }
+    .price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 25px; }
+    .price-amount { font-size: 38px; font-weight: 800; color: var(--ink); }
+    .price-note { font-size: 13px; color: var(--text-light); }
+    .color-options { display: flex; gap: 8px; margin-bottom: 25px; }
+    .color-dot { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border); cursor: pointer; transition: all 0.2s; }
+    .color-dot:hover, .color-dot.active { border-color: var(--ink); transform: scale(1.1); }
+    .cta-product { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; padding: 15px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; transition: all 0.2s; }
+    .cta-product:hover { background: #b45309; transform: translateY(-2px); }
+
+    /* Features */
+    .features-section { background: var(--ink); color: #fff; padding: 60px 0; }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .feature-item { text-align: center; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .feature-icon { font-size: 28px; margin-bottom: 12px; }
+    .feature-item h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .feature-item p { font-size: 12px; color: #a8a29e; line-height: 1.5; }
+
+    /* Reviews */
+    .reviews-section { padding: 70px 0; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .review-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 25px; }
+    .review-stars { color: var(--accent); font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; }
+    .review-text { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 16px; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: 10px; }
+    .review-avatar { width: 32px; height: 32px; background: var(--warm); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: var(--accent); }
+    .review-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+    .review-role { font-size: 12px; color: var(--text-light); }
+
+    /* Story */
+    .story-section { background: var(--warm); padding: 70px 0; text-align: center; }
+    .story-section h2 { font-size: 30px; font-weight: 800; margin-bottom: 15px; color: var(--ink); }
+    .story-section p { font-size: 16px; color: #57534e; max-width: 550px; margin: 0 auto 25px; }
+    .story-signature { font-size: 15px; font-style: italic; color: var(--accent); margin-top: 10px; }
+
+    footer { background: var(--ink); color: #a8a29e; text-align: center; padding: 25px 0; font-size: 13px; }
+    .footer-brand { font-size: 16px; font-weight: 700; letter-spacing: 2px; color: #fff; margin-bottom: 5px; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .product-grid, .reviews-grid, .features-grid { grid-template-columns: 1fr; }
+      .header-inner { flex-direction: column; gap: 12px; }
+      nav { margin-top: 5px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-mark">N</div>
+        NOOK
+      </div>
+      <nav>
+        <a href="#product">The Notebook</a>
+        <a href="#features">Details</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#story">Our Story</a>
+        <a href="#" class="header-cta">Shop Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg-dots"></div>
+    <div class="container hero-content">
+      <div class="hero-badge">New Season Colors Now Available</div>
+      <h1>Write Better.<br>Feel Better.</h1>
+      <p>A premium journal designed for writers, planners, and creatives who take their ideas seriously. 192 pages of smooth, durable paper in a notebook that opens flat and lasts.</p>
+      <div class="hero-cta-group">
+        <a href="#product" class="btn-primary">Explore the Notebook</a>
+        <a href="#" class="btn-outline">Watch the Film</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="product" class="product-section">
+    <div class="container">
+      <div class="product-grid">
+        <div class="product-visual">
+          <div class="product-image">📓</div>
+          <div class="product-label">The Nook Notebook</div>
+        </div>
+        <div class="product-info">
+          <h2>Designed for the Long Haul</h2>
+          <p class="lead">Every detail considered — from the weight of the paper to the feel of the cover. A notebook you'll reach for every day.</p>
+          <div class="product-details">
+            <div class="detail-row"><span class="detail-check">✓</span> 192 pages, 100gsm cream paper</div>
+            <div class="detail-row"><span class="detail-check">✓</span> Lay-flat stitching, no fuss</div>
+            <div class="detail-row"><span class="detail-check">✓</span> durable textile cover, 6 colors</div>
+            <div class="detail-row"><span class="detail-check">✓</span> 6" x 9" — fits any bag, any desk</div>
+            <div class="detail-row"><span class="detail-check">✓</span> Includes ribbon marker &amp; pocket</div>
+          </div>
+          <div class="color-options">
+            <div class="color-dot active" style="background:#292524" title="Ink"></div>
+            <div class="color-dot" style="background:#d97706" title="Amber"></div>
+            <div class="color-dot" style="background:#047857" title="Forest"></div>
+            <div class="color-dot" style="background:#7c3aed" title="Violet"></div>
+            <div class="color-dot" style="background:#e11d48" title="Blush"></div>
+            <div class="color-dot" style="background:#e5e7eb" title="Cloud"></div>
+          </div>
+          <div class="price-row">
+            <span class="price-amount">$24</span>
+            <span class="price-note">Free shipping on orders over $40</span>
+          </div>
+          <a href="#" class="cta-product">
+            Add to Cart — $24
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:4px;">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">📄</div>
+          <h3>100gsm Paper</h3>
+          <p>No bleed-through. No ghosting. Ink flows the way it should.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔗</div>
+          <h3>Lay-Flat Bind</h3>
+          <p>Open it wide and stay there. Write across the spread, no struggle.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">👐</div>
+          <h3>Textile Cover</h3>
+          <p>Soft-touch, durable, water-resistant. Feels as good as it looks.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏭</div>
+          <h3>Made in US</h3>
+          <p>Designed and assembled in Portland, Oregon. Small batches, big care.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="reviews-section">
+    <div class="container">
+      <h2 style="text-align:center;font-size:26px;font-weight:800;color:var(--ink);margin-bottom:8px;">What Writers Are Saying</h2>
+      <p style="text-align:center;color:var(--text-light);margin-bottom:35px;font-size:15px;">Join thousands of writers, planners, and creatives who made Nook their go-to.</p>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I've tried a dozen notebooks over the years. Nook is the first one I've bought three of at once. The paper is genuinely incredible — my fountain pen feels at home on it."</p>
+          <div class="review-author">
+            <div class="review-avatar">JM</div>
+            <div>
+              <div class="review-name">Jessie M.</div>
+              <div class="review-role">Novelist, Portland</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Finally, a notebook that doesn't feel disposable. The cover has that soft texture you keep touching even when you're not writing. Built to last."</p>
+          <div class="review-author">
+            <div class="review-avatar">DK</div>
+            <div>
+              <div class="review-name">David K.</div>
+              <div class="review-role">Product Designer, SF</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I use Nook for everything — meeting notes, daily journaling, project planning. It's become my default. The lay-flat binding genuinely makes a difference."</p>
+          <div class="review-author">
+            <div class="review-avatar">AL</div>
+            <div>
+              <div class="review-name">Amanda L.</div>
+              <div class="review-role">Freelance Writer, NYC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="story-section">
+    <div class="container">
+      <h2>Our Story</h2>
+      <p>Nook Notebook started in a small workshop in Portland, Oregon, with one idea: make a notebook that writers and creatives would actually keep using. Not a disposable doodle pad — a tool for the long haul.</p>
+      <p>We source our paper responsibly, assemble every notebook by hand, and pack each one with a bit of that Portland care that you can feel when you open it.</p>
+      <p class="story-signature">— The Nook Team, Portland, OR</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">NOOK NOTEBOOK</div>
+      <p>&copy; 2026 Nook Notebook. Made with care in Portland.</p>
+    </div>
+  </footer>
+</body>
+</html>

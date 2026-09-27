@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brew & Bean - Coffee Shop</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    header { background: #5d4037; color: #fff; padding: 30px 20px; text-align: center; }
+    header h1 { font-size: 32px; }
+    header p { color: #d7ccc8; }
+    nav { display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
+    nav a { color: #fff; text-decoration: none; font-size: 14px; }
+    .hero { background: #fff3e0; padding: 50px 20px; text-align: center; }
+    .hero h2 { font-size: 28px; margin-bottom: 15px; }
+    .hero p { max-width: 500px; margin: 0 auto 25px; color: #555; }
+    .menu-section { padding: 40px 20px; max-width: 800px; margin: 0 auto; }
+    .menu-section h2 { text-align: center; margin-bottom: 20px; }
+    .menu-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item .name { font-weight: bold; }
+    .menu-item .price { color: #5d4037; }
+    .about { background: #fafafa; padding: 40px 20px; text-align: center; }
+    .about h2 { margin-bottom: 15px; }
+    .about p { max-width: 600px; margin: 0 auto; color: #555; }
+    .hours { background: #333; color: #fff; padding: 30px 20px; text-align: center; }
+    .hours h2 { margin-bottom: 15px; color: #ffb74d; }
+    .hours p { margin: 5px 0; }
+    footer { background: #222; color: #999; text-align: center; padding: 15px; margin-top: 30px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Brew & Bean</h1>
+    <p>Fresh coffee. Good vibes. Made with care.</p>
+    <nav>
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#hours">Hours & Location</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Your Neighborhood Coffee Spot</h2>
+    <p>We roast our own beans, bake fresh pastries every morning, and make every cup by hand. Come say hi.</p>
+    <a href="#menu" style="background:#5d4037; color:#fff; padding:12px 25px; text-decoration:none; border-radius:4px;">View Menu</a>
+  </section>
+
+  <section id="menu" class="menu-section">
+    <h2>Our Menu</h2>
+    <div class="menu-item"><span class="name">Espresso</span><span class="price">$3.00</span></div>
+    <div class="menu-item"><span class="name">Cappuccino</span><span class="price">$4.50</span></div>
+    <div class="menu-item"><span class="name">Latte</span><span class="price">$4.75</span></div>
+    <div class="menu-item"><span class="name">Cold Brew</span><span class="price">$4.25</span></div>
+    <div class="menu-item"><span class="name">Fresh Pastry</span><span class="price">$3.50</span></div>
+    <div class="menu-item"><span class="name">Avocado Toast</span><span class="price">$8.00</span></div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p>Brew & Bean started in 2019 with one goal: make great coffee accessible to everyone. We source our beans from small farms and roast in small batches to bring out the best flavor.</p>
+  </section>
+
+  <section id="hours" class="hours">
+    <h2>Hours & Location</h2>
+    <p>123 Main Street, Your City</p>
+    <p>Open daily 7am - 7pm</p>
+    <p>(555) 123-4567</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Brew & Bean. All rights reserved.</p>
+  </footer>
+</body>
+</html>

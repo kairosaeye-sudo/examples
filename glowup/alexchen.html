@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Chen - Visual Designer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #fafaf9;
+      --dark: #1c1917;
+      --card: #ffffff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --text: #44403c;
+      --text-light: #a8a29e;
+    }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+
+    /* Header */
+    header { background: var(--card); border-bottom: 1px solid #f4f4f5; padding: 0; position: sticky; top: 0; z-index: 100; }
+    .header-inner { max-width: 1000px; margin: 0 auto; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .name { font-size: 18px; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 10px; }
+    .avatar-sm { width: 36px; height: 36px; background: var(--dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px; }
+    nav a { color: var(--text-light); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    nav a:hover { color: var(--accent); }
+    .nav-cta { background: var(--dark); color: #fff !important; padding: 7px 16px; border-radius: 6px; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--accent); color: #fff !important; }
+
+    /* Hero */
+    .hero { padding: 70px 0; text-align: center; }
+    .hero-label { display: inline-block; background: var(--accent-light); color: var(--accent); padding: 5px 14px; border-radius: 16px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 18px; }
+    .hero h1 { font-size: 44px; font-weight: 800; color: var(--dark); letter-spacing: -1px; margin-bottom: 12px; }
+    .hero-sub { font-size: 17px; color: var(--text-light); max-width: 480px; margin: 0 auto 30px; }
+    .hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .btn-outline { border: 1.5px solid var(--dark); color: var(--dark); padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.2s; }
+    .btn-outline:hover { background: var(--dark); color: #fff; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.2s; }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+
+    /* Work */
+    .work-section { padding: 70px 0; }
+    .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light); margin-bottom: 12px; }
+    .section-title { font-size: 32px; font-weight: 800; color: var(--dark); margin-bottom: 10px; letter-spacing: -0.5px; }
+    .section-desc { font-size: 16px; color: var(--text-light); margin-bottom: 40px; max-width: 400px; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .work-card { background: var(--card); border: 1px solid #e4e4e7; border-radius: 10px; overflow: hidden; transition: all 0.3s; }
+    .work-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(37,99,235,0.08); transform: translateY(-3px); }
+    .card-image { height: 180px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 40px; color: var(--accent); }
+    .card-image.c2 { background: #fef3c7; color: #d97706; }
+    .card-image.c3 { background: #dcfce7; color: #16a34a; }
+    .card-image.c4 { background: #f3e8ff; color: #9333ea; }
+    .card-body { padding: 20px; }
+    .card-body h3 { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .card-body p { font-size: 13px; color: var(--text-light); }
+    .card-tags { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+    .tag { background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+
+    /* About */
+    .about-section { background: var(--dark); color: #fff; padding: 60px 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .about-text h2 { font-size: 28px; font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px; }
+    .about-text p { font-size: 15px; line-height: 1.8; color: #d6d3d1; margin-bottom: 12px; }
+    .about-text .highlight { color: var(--accent); font-weight: 600; }
+    .about-skills { display: flex; flex-direction: column; gap: 10px; }
+    .skill-row { display: flex; align-items: center; gap: 12px; }
+    .skill-name { font-size: 14px; font-weight: 600; color: #fff; width: 120px; }
+    .skill-bar { flex: 1; height: 8px; background: #292524; border-radius: 4px; overflow: hidden; }
+    .skill-fill { height: 100%; background: var(--accent); border-radius: 4px; }
+
+    /* Contact */
+    .contact-section { padding: 70px 0; text-align: center; }
+    .contact-box { background: var(--card); border: 1px solid #e4e4e7; border-radius: 14px; padding: 50px 40px; max-width: 550px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+    .contact-box h2 { font-size: 26px; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
+    .contact-box p { color: var(--text-light); margin-bottom: 25px; }
+    .contact-email { display: inline-block; background: var(--accent); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.2s; }
+    .contact-email:hover { background: #1d4ed8; transform: translateY(-2px); }
+    .contact-socials { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+    .social { width: 40px; height: 40px; border-radius: 50%; background: #f4f4f5; display: flex; align-items: center; justify-content: center; color: var(--text); text-decoration: none; font-size: 16px; transition: all 0.2s; }
+    .social:hover { background: var(--accent); color: #fff; }
+
+    footer { background: var(--bg); border-top: 1px solid #e4e4e7; padding: 25px 0; text-align: center; font-size: 13px; color: var(--text-light); }
+
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 32px; }
+      .work-grid, .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .header-inner { flex-direction: column; gap: 12px; }
+      nav { margin-top: 8px; width: 100%; justify-content: center; }
+      .contact-box { padding: 35px 25px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="name">
+        <div class="avatar-sm">AC</div>
+        Alex Chen
+      </div>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Let's Talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-label">Visual Designer &middot; Brand Identity</div>
+    <h1>I help brands find their visual voice.</h1>
+    <p class="hero-sub">Brand identity, packaging, and digital design for startups and small businesses ready to stand out. Based in Portland, working worldwide.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-outline">See My Work</a>
+      <a href="#contact" class="btn-primary">Start a Project</a>
+    </div>
+  </section>
+
+  <section id="work" class="work-section">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title">Recent Projects</h2>
+    <p class="section-desc">A mix of branding, product, and digital design from the past year.</p>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&q=80" alt="Workspace" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Bloom Cosmetics Rebrand</h3>
+          <p>Full brand identity and packaging design for a clean beauty startup preparing for retail launch.</p>
+          <div class="card-tags"><span class="tag">Brand Identity</span><span class="tag">Packaging</span><span class="tag">Retail</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1551434678-671a273537a7?w=400&h=300&fit=crop&q=80" alt="App dashboard" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Fresh Eats App</h3>
+          <p>End-to-end UI/UX design for a food delivery platform connecting 50+ local restaurants with customers.</p>
+          <div class="card-tags"><span class="tag">UI/UX</span><span class="tag">Mobile</span><span class="tag">Product</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=300&fit=crop&q=80" alt="Notebook" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Coastal Bakery</h3>
+          <p>Logo, environmental signage, and menu system for a beachside bakery in Cannon Beach.</p>
+          <div class="card-tags"><span class="tag">Logo</span><span class="tag">Signage</span><span class="tag">Print</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="card-image c4">
+          <img src="https://images.unsplash.com/photo-1446776811785-172c73b9e5bb?w=400&h=300&fit=crop&q=80" alt="Earth from space" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>GreenSpace Interior</h3>
+          <p>Brand system and marketing collateral for a sustainable home goods retailer opening their first location.</p>
+          <div class="card-tags"><span class="tag">Brand System</span><span class="tag">Collateral</span><span class="tag">Retail</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>About Alex</h2>
+        <p>I'm a visual designer with <span class="highlight">8 years of experience</span> helping startups and small businesses develop brands that feel intentional and look unmistakable.</p>
+        <p>My approach is collaborative — I work closely with founders and teams to understand what makes their company unique, then translate that into a visual language that holds up across every touchpoint.</p>
+        <p>Before going independent, I led design at a Portland-based startup where we grew from 5 to 40 people. That experience taught me how to design for real growth, not just pretty pictures.</p>
+      </div>
+      <div class="about-skills">
+        <div class="skill-row">
+          <span class="skill-name">Brand Identity</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Packaging Design</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">UI/UX Design</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Motion Design</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Print & Signage</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="contact-box">
+      <h2>Let's Build Something Together</h2>
+      <p>Have a project in mind? I'm currently taking on new clients for Q4. Tell me about your vision and I'll get back to you within 2 business days.</p>
+      <a href="mailto:alex@alexchen.design" class="contact-email">alex@alexchen.design</a>
+      <div class="contact-socials">
+        <a href="#" class="social" title="Dribbble">D</a>
+        <a href="#" class="social" title="Instagram">IG</a>
+        <a href="#" class="social" title="LinkedIn">in</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="max-width:1000px;margin:0 auto;padding:0 24px;">
+      <p>&copy; 2026 Alex Chen. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

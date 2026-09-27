@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Example 05 — Waitlist / Pre-Launch</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .phone-frame {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    .status-bar {
+      height: 48px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1c1e21;
+      border-bottom: 1px solid #e4e6eb;
+    }
+    .feed-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e4e6eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; background: #6366f1; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 13px; }
+    .feed-header-info { flex: 1; }
+    .feed-header-info .name { font-weight: 600; font-size: 13px; color: #1c1e21; }
+    .feed-header-info .time { font-size: 11px; color: #65676b; }
+    .ad-label {
+      display: inline-block;
+      background: #6366f1;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .ad-body { padding: 0 16px; }
+    .ad-poster {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f0f1a 50%, #1a1a2e 100%);
+      border-radius: 14px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .poster-bg-elements {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .poster-ring {
+      position: absolute;
+      border: 1.5px solid rgba(99,102,241,0.2);
+      border-radius: 50%;
+      animation: spin 20s linear infinite;
+    }
+    .poster-ring.r1 { width: 90%; height: 90%; top: 5%; left: 5%; }
+    .poster-ring.r2 { width: 65%; height: 65%; top: 17.5%; left: 17.5%; animation-duration: 15s; animation-direction: reverse; }
+    .poster-ring.r3 { width: 40%; height: 40%; top: 30%; left: 30%; animation-duration: 10s; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .poster-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+    }
+    .poster-orb.o1 { width: 200px; height: 200px; background: rgba(99,102,241,0.3); top: -60px; right: -40px; }
+    .poster-orb.o2 { width: 120px; height: 120px; background: rgba(139,92,246,0.2); bottom: -30px; left: -30px; }
+    .poster-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+    .poster-logo {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.3);
+    }
+    .poster-logo svg { width: 28px; height: 28px; stroke: #fff; stroke-width: 2; fill: none; }
+    .poster-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .poster-sub {
+      font-size: 12px;
+      color: #a5b4fc;
+      margin-bottom: 16px;
+    }
+    .poster-count {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: inline-block;
+      font-size: 11px;
+      color: #c7d2fe;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .poster-count strong { color: #fff; font-size: 13px; }
+    .ad-copy { padding: 0 16px 16px; }
+    .ad-sponsor {
+      font-size: 11px;
+      font-weight: 600;
+      color: #65676b;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ad-sponsor .dot { width: 6px; height: 6px; background: #6366f1; border-radius: 50%; }
+    .ad-headline {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1c1e21;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .ad-text {
+      font-size: 13px;
+      color: #65676b;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .ad-cta-group { display: flex; gap: 8px; flex-direction: column; }
+    .ad-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex: 1;
+      padding: 13px;
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.2s;
+      text-decoration: none;
+    }
+    .ad-btn:hover { transform: translateY(-1px); }
+    .ad-btn svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .ad-footer {
+      padding: 10px 16px 14px;
+      font-size: 10px;
+      color: #65676b;
+      border-top: 1px solid #e4e6eb;
+      background: #fff;
+    }
+    .ad-footer a { color: #65676b; text-decoration: none; }
+    .ad-footer a:hover { color: #6366f1; }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="status-bar">
+      <span>9:41</span>
+      <span>📶 🔋 100%</span>
+    </div>
+    <div class="feed-header">
+      <div class="avatar">K</div>
+      <div class="feed-header-info">
+        <div class="name">kairos.ccc</div>
+        <div class="time">Sponsored · 3d ago</div>
+      </div>
+    </div>
+    <div class="ad-body">
+      <div class="ad-label">Sponsored</div>
+      <div class="ad-poster">
+        <div class="poster-bg-elements">
+          <div class="poster-ring r1"></div>
+          <div class="poster-ring r2"></div>
+          <div class="poster-ring r3"></div>
+          <div class="poster-orb o1"></div>
+          <div class="poster-orb o2"></div>
+        </div>
+        <div class="poster-content">
+          <div class="poster-logo">
+            <svg viewBox="0 0 24 24"><path d="M12 3L3 8l9 5 9-5-9-5z"/><path d="M3 15l9 5 9-5"/><path d="M3 12l9 5 9-5"/></svg>
+          </div>
+          <div class="poster-title">Kairos<br>Glow Up</div>
+          <div class="poster-sub">Website redesign &amp; build</div>
+          <div class="poster-count"><strong>50+</strong> projects done</div>
+        </div>
+      </div>
+      <div class="ad-copy">
+        <div class="ad-sponsor"><span class="dot"></span> Sponsored by Kairos</div>
+        <div class="ad-headline">Your website is losing customers. Give it the glow up it needs.</div>
+        <div class="ad-text">We redesign and rebuild websites for startups and small businesses. Modern design. Faster load. Clear message. 50+ businesses helped — everything built by one team from start to finish.</div>
+        <div class="ad-cta-group">
+          <a href="https://calendly.com/your-calendly-link" class="ad-btn" target="_blank">
+            Book a Call
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:6px;">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a href="#" class="ad-btn" style="background:#fff;color:#1c1e21;border:1.5px solid #e4e6eb;">See Examples</a>
+        </div>
+      </div>
+    </div>
+    <div class="ad-footer">
+      <a href="#">See all reviews</a> · <a href="#">Privacy</a> · <a href="#">Terms</a>
+    </div>
+  </div>
+</body>
+</html>

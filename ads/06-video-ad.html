@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Example 06 — Video Ad Creative</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .phone-frame {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    .status-bar {
+      height: 48px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1c1e21;
+      border-bottom: 1px solid #e4e6eb;
+    }
+    .feed-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e4e6eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; background: #f59e0b; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 13px; }
+    .feed-header-info { flex: 1; }
+    .feed-header-info .name { font-weight: 600; font-size: 13px; color: #1c1e21; }
+    .feed-header-info .time { font-size: 11px; color: #65676b; }
+    .ad-label {
+      display: inline-block;
+      background: #f59e0b;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .ad-body { padding: 0; }
+    .video-player {
+      width: 100%;
+      height: 280px;
+      background: #111827;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .video-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #111827 0%, #1e1b4b 50%, #0f172a 100%);
+    }
+    .video-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+    .shape.s1 { width: 180px; height: 180px; background: #a78bfa; top: -40px; right: -20px; animation: float1 8s ease-in-out infinite; }
+    .shape.s2 { width: 120px; height: 120px; background: #60a5fa; bottom: -30px; left: -20px; animation: float2 10s ease-in-out infinite; }
+    .shape.s3 { width: 80px; height: 80px; background: #f59e0b; top: 40%; left: 15%; animation: float1 6s ease-in-out infinite reverse; }
+    @keyframes float1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(15px,-10px); } }
+    @keyframes float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-10px,10px); } }
+    .video-play-btn {
+      position: relative;
+      z-index: 1;
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .video-play-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
+    .video-play-btn-inner {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 12px 0 12px 22px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 4px;
+    }
+    .video-time {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .video-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(245,158,11,0.9);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .video-title {
+      position: absolute;
+      bottom: 40px;
+      left: 14px;
+      right: 14px;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .video-title h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+    .video-title p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+    .ad-copy { padding: 14px 16px 4px; }
+    .ad-sponsor {
+      font-size: 11px;
+      font-weight: 600;
+      color: #65676b;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ad-sponsor .dot { width: 6px; height: 6px; background: #f59e0b; border-radius: 50%; }
+    .ad-headline {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1c1e21;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .ad-text {
+      font-size: 13px;
+      color: #65676b;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .ad-cta-group { display: flex; gap: 8px; }
+    .ad-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+    }
+    .ad-btn svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .ad-btn-primary {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(245,158,11,0.3);
+    }
+    .ad-btn-primary:hover { transform: translateY(-1px); }
+    .ad-btn-secondary {
+      background: #fff;
+      color: #1c1e21;
+      border: 1.5px solid #e4e6eb;
+    }
+    .ad-btn-secondary:hover { border-color: #f59e0b; }
+    .ad-footer {
+      padding: 10px 16px 14px;
+      font-size: 10px;
+      color: #65676b;
+      border-top: 1px solid #e4e6eb;
+      background: #fff;
+    }
+    .ad-footer a { color: #65676b; text-decoration: none; }
+    .ad-footer a:hover { color: #f59e0b; }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="status-bar">
+      <span>9:41</span>
+      <span>📶 🔋 100%</span>
+    </div>
+    <div class="feed-header">
+      <div class="avatar">K</div>
+      <div class="feed-header-info">
+        <div class="name">kairos.ccc</div>
+        <div class="time">Sponsored · 4d ago</div>
+      </div>
+    </div>
+    <div class="ad-body">
+      <div class="ad-label">Sponsored · Video</div>
+      <div class="video-player">
+        <div class="video-bg"></div>
+        <div class="video-shapes">
+          <div class="shape s1"></div>
+          <div class="shape s2"></div>
+          <div class="shape s3"></div>
+        </div>
+        <div class="video-badge">30 sec</div>
+        <div class="video-play-btn">
+          <div class="video-play-btn-inner"></div>
+        </div>
+        <div class="video-title">
+          <h3>Watch how we rebuilt TaskFlow</h3>
+          <p>From outdated tool to team favorite — and 40% more daily active users in the first month.</p>
+        </div>
+        <div class="video-time">0:30</div>
+      </div>
+      <div class="ad-copy">
+        <div class="ad-sponsor"><span class="dot"></span> Sponsored by Kairos</div>
+        <div class="ad-headline">See the glow up in action.</div>
+        <div class="ad-text">One team. Two weeks of design. Four weeks of build. A startup tool that went from outdated to team favorite — and 40% more daily active users in the first month.</div>
+        <div class="ad-cta-group">
+          <a href="https://calendly.com/your-calendly-link" class="ad-btn" target="_blank">
+            Book a Free Call
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:6px;">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a href="#" class="ad-btn" style="background:#fff;color:#1c1e21;border:1.5px solid #e4e6eb;">See Examples</a>
+        </div>
+      </div>
+    </div>
+    <div class="ad-footer">
+      <a href="#">See all reviews</a> · <a href="#">Privacy</a> · <a href="#">Terms</a>
+    </div>
+  </div>
+</body>
+</html>
