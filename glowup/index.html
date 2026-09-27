@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kairos — Example Client Sites (Glow Up)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0b;
+      color: #e4e4e7;
+      min-height: 100vh;
+    }
+    .header { background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0b 100%); padding: 24px; border-bottom: 1px solid #1f1f23; }
+    .header h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 4px; background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .header p { color: #71717a; font-size: 13px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: #1f1f23; padding: 1px; }
+    .card { background: #18181b; padding: 16px; }
+    .card:hover { background: #1f1f23; }
+    .card h3 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .card .desc { font-size: 12px; color: #71717a; margin-bottom: 10px; line-height: 1.4; }
+    .card .tag { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #22c55e; margin-bottom: 8px; }
+    .card a { font-size: 12px; font-weight: 600; color: #a78bfa; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.2s; }
+    .card a:hover { color: #60a5fa; }
+    .card a svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .footer { text-align: center; padding: 16px; color: #71717a; font-size: 11px; border-top: 1px solid #1f1f23; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Kairos — Example Sites (Glow Up)</h1>
+    <p>After versions — the enhanced redesigns. Same 5 clients, same Kairos process, modern results.</p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">SaaS</span>
+      <h3>TaskFlow</h3>
+      <div class="desc">Project management tool — rebuilt with dark theme, stats bar, feature cards.</div>
+      <a href="taskflow.html" target="_blank">View Glow Up <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="card">
+      <span class="tag">Local Biz</span>
+      <h3>Brew &amp; Bean</h3>
+      <div class="desc">Coffee shop — dark espresso theme, gallery grid, menu cards.</div>
+      <a href="brewbean.html" target="_blank">View Glow Up <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="card">
+      <span class="tag">Portfolio</span>
+      <h3>Alex Chen</h3>
+      <div class="desc">Designer portfolio — bold typography, project cards with hover lift.</div>
+      <a href="alexchen.html" target="_blank">View Glow Up <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="card">
+      <span class="tag">DTC</span>
+      <h3>Nook Notebook</h3>
+      <div class="desc">Journal brand — color picker showcase, feature grid, review cards.</div>
+      <a href="nook.html" target="_blank">View Glow Up <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="card">
+      <span class="tag">Pre-Launch</span>
+      <h3>Orbit App</h3>
+      <div class="desc">Waitlist — dark space theme, animated orbs, glassmorphism nav, feature cards.</div>
+      <a href="orbit.html" target="_blank">View Glow Up <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+  <div class="footer">Kairos — creative construct company</div>
+</body>
+</html>
