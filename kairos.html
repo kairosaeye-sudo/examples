@@ -433,10 +433,12 @@
     .products-section { background: transparent; }
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       margin-top: 50px;
     }
+    .products-grid .product-card { padding: 30px; }
+    .products-grid .product-features li { font-size: 13px; }
     .product-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -928,9 +930,13 @@
     }
 
     /* Responsive */
+    @media (max-width: 1180px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .products-grid { grid-template-columns: 1fr; }
+      .products-grid .product-card { padding: 36px; }
       .work-grid { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .about-visual { max-width: 400px; }
@@ -1152,7 +1158,7 @@
     <div class="container">
       <div class="section-label"><span class="line"></span> Our Products</div>
       <h2 class="section-title">Software we build<br>and run ourselves.</h2>
-      <p class="section-sub">Beyond client work, Kairos builds its own subscription products. Same craft, built for everyone.</p>
+      <p class="section-sub">Beyond client work, Kairos builds its own products. Same craft, built for everyone.</p>
       <div class="products-grid">
         <div class="product-card">
           <div class="product-head">
@@ -1204,6 +1210,31 @@
             <span class="product-status"><span class="pip"></span> Live</span>
           </div>
         </div>
+        <div class="product-card">
+          <div class="product-head">
+            <div class="product-mark">
+              <svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 20V10"/><path d="M12 20V4"/><path d="M18 20v-7"/></svg>
+            </div>
+            <div>
+              <div class="product-name">Vantage</div>
+              <div class="product-kind">Website Intelligence</div>
+            </div>
+          </div>
+          <p class="product-desc">See how your website ranks against your competitors. Vantage scores your site across seven measured categories, compares it to your whole field, and tells you exactly what to fix next.</p>
+          <ul class="product-features">
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Free score across 7 categories — performance, mobile, search, trust, content, AI visibility, conversion</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Side-by-side against your field, any industry and location</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Glow up: we rebuild the page and verify the score gain</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Weekly monitoring with alerts when a competitor overtakes you</li>
+          </ul>
+          <div class="product-actions">
+            <a href="https://vantage-kappa-orcin.vercel.app" target="_blank" rel="noopener" class="product-cta">
+              Check Your Site Free
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <span class="product-status"><span class="pip"></span> Live</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1246,6 +1277,26 @@
             <p>A personal research vault for capturing notes, ideas, and sources. Passwordless sign-in and private-by-default storage.</p>
             <div class="work-meta">
               <span>forge-murex-eight.vercel.app</span>
+            </div>
+            <div class="work-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+        <a class="work-card" href="https://vantage-kappa-orcin.vercel.app" target="_blank" rel="noopener">
+          <div class="work-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=440&fit=crop&q=80" alt="Vantage competitor scoring dashboard" loading="lazy">
+            <span class="work-tag">Live SaaS</span>
+          </div>
+          <div class="work-body">
+            <div class="work-category">Website Intelligence</div>
+            <h3>Vantage</h3>
+            <p>Scores a business website against its entire competitive field — seven measured categories, side-by-side comparison, ranked fixes, a verified glow-up rebuild, and weekly monitoring that alerts you when a competitor moves ahead.</p>
+            <div class="work-meta">
+              <span>vantage-kappa-orcin.vercel.app</span>
             </div>
             <div class="work-arrow">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1398,6 +1449,7 @@
           <h5>Products</h5>
           <a href="#products">SmartBookkeeper</a>
           <a href="#products">Forge</a>
+          <a href="#products">Vantage</a>
           <a href="#services">The Glow Up</a>
           <a href="#work">All Work</a>
         </div>
