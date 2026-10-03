@@ -429,6 +429,167 @@
     }
     .service-card:hover .service-link { gap: 10px; }
 
+    /* Products */
+    .products-section { background: transparent; }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 50px;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .product-card:hover {
+      border-color: rgba(167,139,250,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+    }
+    .product-card:hover::before { opacity: 1; }
+    .product-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .product-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: var(--accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .product-card:hover .product-mark {
+      background: var(--gradient);
+    }
+    .product-mark svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s;
+    }
+    .product-card:hover .product-mark svg { stroke: #0a0a0b; }
+    .product-name {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      line-height: 1.2;
+    }
+    .product-kind {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 3px;
+    }
+    .product-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .product-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+    .product-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .product-features svg {
+      width: 15px;
+      height: 15px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .product-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .product-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--gradient);
+      color: #0a0a0b;
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 11px 20px;
+      border-radius: 9px;
+      transition: all 0.3s;
+    }
+    .product-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(167,139,250,0.3);
+    }
+    .product-cta svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+    }
+    .product-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .product-status .pip {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 8px rgba(74,222,128,0.6);
+    }
+
     /* Featured Work */
     .work-section { background: var(--bg-elevated); }
     .work-grid {
@@ -768,6 +929,7 @@
     /* Responsive */
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: 1fr; }
       .work-grid { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .about-visual { max-width: 400px; }
@@ -800,6 +962,7 @@
       </a>
       <div class="nav-links">
         <a href="#services">Services</a>
+        <a href="#products">Products</a>
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#values">Values</a>
@@ -818,6 +981,7 @@
   <div class="mobile-nav" id="mobileNav">
     <button class="mobile-nav-close" id="menuClose" aria-label="Close menu">×</button>
     <a href="#services" onclick="closeMobileNav()">Services</a>
+    <a href="#products" onclick="closeMobileNav()">Products</a>
     <a href="#work" onclick="closeMobileNav()">Work</a>
     <a href="#about" onclick="closeMobileNav()">About</a>
     <a href="#values" onclick="closeMobileNav()">Values</a>
@@ -978,20 +1142,66 @@
             </svg>
           </a>
         </div>
-        <div class="service-card">
-          <div class="service-number">07</div>
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="products-section">
+    <div class="container">
+      <div class="section-label"><span class="line"></span> Our Products</div>
+      <h2 class="section-title">Software we build<br>and run ourselves.</h2>
+      <p class="section-sub">Beyond client work, Kairos builds its own subscription products. Same craft, built for everyone.</p>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-head">
+            <div class="product-mark">
+              <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg>
+            </div>
+            <div>
+              <div class="product-name">SmartBookkeeper</div>
+              <div class="product-kind">Bookkeeping SaaS</div>
+            </div>
           </div>
-          <h3>SmartBookkeeper</h3>
-          <p>AI-powered bookkeeping SaaS for small businesses. Receipt scanning, smart categorization, and tax-ready reports — all automated.</p>
-          <a href="https://smartbookkeeper.vercel.app" target="_blank" class="service-link">
-            View product
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:2px;">
-              <line x1="5" y1="12" x2="19" y2="12"/>
-              <polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
+          <p class="product-desc">AI-powered bookkeeping for small businesses and startups. Track every dollar, scan receipts, and walk into tax season with clean, organized books.</p>
+          <ul class="product-features">
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Receipt scanning with automatic data capture</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Smart categorization — no manual tagging</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Real-time dashboard for cash flow and profit</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Tax-ready P&amp;L and monthly reports</li>
+          </ul>
+          <div class="product-actions">
+            <a href="https://smartbookkeeper.vercel.app" target="_blank" rel="noopener" class="product-cta">
+              Start Free Trial
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <span class="product-status"><span class="pip"></span> Live</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-head">
+            <div class="product-mark">
+              <svg viewBox="0 0 24 24"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5z"/><path d="M3 7l9 5 9-5"/><line x1="12" y1="12" x2="12" y2="22"/></svg>
+            </div>
+            <div>
+              <div class="product-name">Forge</div>
+              <div class="product-kind">Research Vault</div>
+            </div>
+          </div>
+          <p class="product-desc">A personal research vault for capturing ideas, notes, and sources in one place. Built for people who think in fragments and need them to add up.</p>
+          <ul class="product-features">
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Capture notes, links, and ideas instantly</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Tag and search across everything you save</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sign in with Google or a magic link</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Private by default — no tracking, no ads</li>
+          </ul>
+          <div class="product-actions">
+            <a href="https://forge-murex-eight.vercel.app" target="_blank" rel="noopener" class="product-cta">
+              Open Forge
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <span class="product-status"><span class="pip"></span> Live</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1100,6 +1310,27 @@
             <div class="work-meta">
               <span>6 weeks</span>
               <span>SaaS</span>
+            </div>
+            <div class="work-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-image">
+            <img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=600&h=440&fit=crop&q=80" alt="Notes and research" loading="lazy">
+            <span class="work-tag">Product</span>
+          </div>
+          <div class="work-body">
+            <div class="work-category">Productivity</div>
+            <h3>Forge</h3>
+            <p>A personal research vault for capturing notes, ideas, and sources. Passwordless sign-in and private-by-default storage.</p>
+            <div class="work-meta">
+              <span>4 weeks</span>
+              <span>Web App</span>
             </div>
             <div class="work-arrow">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1229,11 +1460,11 @@
           <p>A creative construct company building digital solutions for startups and small businesses. Design. Build. Launch. Glow up.</p>
         </div>
         <div class="footer-col">
-          <h5>Services</h5>
-          <a href="#services">Web Design</a>
-          <a href="#">Digital Products</a>
-          <a href="#">The Glow Up</a>
-          <a href="#">Brand Identity</a>
+          <h5>Products</h5>
+          <a href="#products">SmartBookkeeper</a>
+          <a href="#products">Forge</a>
+          <a href="#services">The Glow Up</a>
+          <a href="#work">All Work</a>
         </div>
         <div class="footer-col">
           <h5>Company</h5>
@@ -1299,7 +1530,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.service-card, .work-card, .value-item, .stat-item').forEach(el => {
+    document.querySelectorAll('.service-card, .product-card, .work-card, .value-item, .stat-item').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
