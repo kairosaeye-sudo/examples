@@ -10,18 +10,22 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg: #0a0a0b;
-      --bg-elevated: #111113;
-      --bg-card: #18181b;
-      --border: #1f1f23;
-      --border-hover: #2d2d33;
-      --text: #fafafa;
-      --text-muted: #a1a1aa;
-      --text-dim: #71717a;
-      --accent: #a78bfa;
-      --accent-glow: rgba(167, 139, 250, 0.15);
-      --accent-2: #60a5fa;
-      --gradient: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+      /* Palette derived from the Kairos logo: warm cream base, deep-navy ink,
+         and the logo's gold (#f5c842) as the accent. */
+      --bg: #faf8f4;
+      --bg-elevated: #ffffff;
+      --bg-card: #ffffff;
+      --border: #e9e3d8;
+      --border-hover: #d8d0c1;
+      --text: #1c1917;
+      --text-muted: #6f6860;
+      --text-dim: #756e63;
+      --accent: #8f6a08;
+      --accent-glow: rgba(202, 147, 11, 0.10);
+      --accent-2: #0c1420;
+      --gradient: linear-gradient(135deg, #f5c842 0%, #ca930b 100%);
+      /* Deeper gold for large text — the bright gold is unreadable on cream. */
+      --gradient-deep: linear-gradient(135deg, #b8860b 0%, #8f6a08 100%);
     }
     html { scroll-behavior: smooth; }
     body {
@@ -42,7 +46,7 @@
       width: 600px;
       height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(202, 147, 11, 0.07) 0%, transparent 70%);
       pointer-events: none;
       transform: translate(-50%, -50%);
       z-index: 9999;
@@ -61,7 +65,7 @@
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     nav.scrolled {
-      background: rgba(10, 10, 11, 0.85);
+      background: rgba(250, 248, 244, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
@@ -82,16 +86,18 @@
       z-index: 101;
     }
     .logo-icon {
-      width: 32px;
-      height: 32px;
-      background: var(--gradient);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 900;
-      color: #0a0a0b;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
     }
     .nav-links {
       display: flex;
@@ -156,8 +162,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(167,139,250,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(167,139,250,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(202, 147, 11, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(202, 147, 11, 0.06) 1px, transparent 1px);
       background-size: 60px 60px;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
     }
@@ -178,7 +184,7 @@
     .hero-orb-2 {
       width: 400px;
       height: 400px;
-      background: rgba(96, 165, 250, 0.08);
+      background: rgba(12, 20, 32, 0.05);
       bottom: -100px;
       left: -100px;
       animation: float 25s ease-in-out infinite reverse;
@@ -201,7 +207,7 @@
       color: var(--accent);
       padding: 6px 14px;
       background: var(--accent-glow);
-      border: 1px solid rgba(167,139,250,0.2);
+      border: 1px solid rgba(202, 147, 11, 0.26);
       border-radius: 100px;
       margin-bottom: 24px;
     }
@@ -214,7 +220,7 @@
       margin-bottom: 24px;
     }
     .hero h1 .gradient-text {
-      background: var(--gradient);
+      background: var(--gradient-deep);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -232,19 +238,19 @@
       align-items: center;
       gap: 8px;
       background: var(--gradient);
-      color: #0a0a0b;
+      color: #1c1917;
       padding: 16px 32px;
       border-radius: 10px;
       font-weight: 700;
       font-size: 15px;
       transition: all 0.3s;
-      box-shadow: 0 4px 24px rgba(167,139,250,0.25);
+      box-shadow: 0 4px 24px rgba(202, 147, 11, 0.28);
       border: none;
       cursor: pointer;
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(167,139,250,0.35);
+      box-shadow: 0 8px 32px rgba(202, 147, 11, 0.38);
     }
     .btn-secondary {
       display: inline-flex;
@@ -373,7 +379,7 @@
       transition: opacity 0.4s;
     }
     .service-card:hover {
-      border-color: rgba(167,139,250,0.3);
+      border-color: rgba(202, 147, 11, 0.32);
       transform: translateY(-4px);
     }
     .service-card:hover::before { opacity: 0.04; }
@@ -462,9 +468,9 @@
       transition: opacity 0.4s;
     }
     .product-card:hover {
-      border-color: rgba(167,139,250,0.3);
+      border-color: rgba(202, 147, 11, 0.32);
       transform: translateY(-4px);
-      box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+      box-shadow: 0 24px 70px rgba(28, 25, 23, 0.10);
     }
     .product-card:hover::before { opacity: 1; }
     .product-head {
@@ -497,7 +503,7 @@
       stroke-linejoin: round;
       transition: stroke 0.3s;
     }
-    .product-card:hover .product-mark svg { stroke: #0a0a0b; }
+    .product-card:hover .product-mark svg { stroke: var(--text); }
     .product-name {
       font-size: 21px;
       font-weight: 700;
@@ -556,7 +562,7 @@
       align-items: center;
       gap: 7px;
       background: var(--gradient);
-      color: #0a0a0b;
+      color: #1c1917;
       font-size: 13.5px;
       font-weight: 700;
       padding: 11px 20px;
@@ -565,7 +571,7 @@
     }
     .product-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(167,139,250,0.3);
+      box-shadow: 0 10px 30px rgba(202, 147, 11, 0.32);
     }
     .product-cta svg {
       width: 14px;
@@ -611,9 +617,9 @@
       group: true;
     }
     .work-card:hover {
-      border-color: rgba(167,139,250,0.25);
+      border-color: rgba(202, 147, 11, 0.28);
       transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 60px rgba(28, 25, 23, 0.08);
     }
     .work-image {
       height: 220px;
@@ -636,11 +642,11 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       padding: 5px 10px;
-      background: rgba(10,10,11,0.8);
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(8px);
       border-radius: 6px;
       color: var(--accent);
-      border: 1px solid rgba(167,139,250,0.2);
+      border: 1px solid rgba(202, 147, 11, 0.26);
     }
     .work-body { padding: 28px; }
     .work-category {
@@ -691,7 +697,7 @@
       fill: none;
     }
     .work-card:hover .work-arrow { background: var(--accent); }
-    .work-card:hover .work-arrow svg { stroke: #0a0a0b; }
+    .work-card:hover .work-arrow svg { stroke: #faf8f4; }
 
     /* About / Stats */
     .about-grid {
@@ -717,7 +723,7 @@
     }
     .about-visual-ring {
       position: absolute;
-      border: 1px solid rgba(167,139,250,0.15);
+      border: 1px solid rgba(202, 147, 11, 0.35);
       border-radius: 50%;
       animation: spin 30s linear infinite;
     }
@@ -728,7 +734,7 @@
     .about-visual-center {
       font-size: 80px;
       font-weight: 900;
-      background: var(--gradient);
+      background: var(--gradient-deep);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -819,7 +825,7 @@
       left: -20%;
       width: 60%;
       height: 200%;
-      background: radial-gradient(ellipse, rgba(167,139,250,0.06) 0%, transparent 60%);
+      background: radial-gradient(ellipse, rgba(202, 147, 11, 0.07) 0%, transparent 60%);
       pointer-events: none;
     }
     .cta-box::after {
@@ -829,7 +835,7 @@
       right: -10%;
       width: 40%;
       height: 120%;
-      background: radial-gradient(ellipse, rgba(96,165,250,0.05) 0%, transparent 60%);
+      background: radial-gradient(ellipse, rgba(12,20,32,0.04) 0%, transparent 60%);
       pointer-events: none;
     }
     .cta-box > * { position: relative; z-index: 1; }
@@ -904,7 +910,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(10,10,11,0.98);
+      background: rgba(250,248,244,0.98);
       backdrop-filter: blur(20px);
       z-index: 99;
       flex-direction: column;
@@ -964,8 +970,8 @@
   <nav id="navbar">
     <div class="container nav-inner">
       <a href="#" class="logo">
-        <div class="logo-icon">K</div>
-        Kairos
+        <img src="logo.png" alt="Kairos logo" class="logo-icon">
+        <span class="logo-text">Kairos</span>
       </a>
       <div class="nav-links">
         <a href="#services">Services</a>
@@ -1395,8 +1401,8 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="logo">
-            <div class="logo-icon">K</div>
-            Kairos
+            <img src="logo.png" alt="Kairos logo" class="logo-icon">
+            <span class="logo-text">Kairos</span>
           </a>
           <p>Building digital solutions for startups and small businesses. Design. Build. Launch. Glow up.</p>
         </div>
